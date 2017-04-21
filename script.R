@@ -39,13 +39,12 @@ for (i in names(couleurs)) {
 
 p <- df %>% 
   filter(force %in% c("Droite", "Centre droit")) %>% 
-  group_by(Année, Territoire) %>% 
-  summarise(score = sum(score)) %>% 
   ggplot(aes(x = Année, y = score)) +
-  geom_point(colour = "#0052AE", size = 2) +
-  geom_line(aes(linetype = Territoire), colour = "#0052AE", alpha = 0.7) +
+  geom_point(aes(colour = force), size = 2) +
+  geom_line(aes(linetype = Territoire, colour = force), alpha = 0.7) +
   geom_label_repel(aes(label = round(score, 1))) +
   scale_linetype(name = "") +
+  scale_colour_manual(values = couleurs, name = "") +
   theme_ipsum(grid = "Y", base_size = 15, axis_title_size = 12) +
   theme(legend.position = "bottom") +
   scale_y_continuous(limits = c(0, NA)) +
@@ -69,13 +68,12 @@ for (i in elections) {
 
 p <- df %>% 
   filter(force %in% c("Gauche communiste", "Socialistes et DVG")) %>% 
-  group_by(Année, Territoire) %>% 
-  summarise(score = sum(score)) %>% 
   ggplot(aes(x = Année, y = score)) +
-  geom_point(colour = "#EB1E4F", size = 2) +
-  geom_line(aes(linetype = Territoire), colour = "#EB1E4F", alpha = 0.7) +
+  geom_point(aes(colour = force), size = 2) +
+  geom_line(aes(linetype = Territoire, colour = force), alpha = 0.7) +
   geom_label_repel(aes(label = round(score, 1))) +
   scale_linetype(name = "") +
+  scale_colour_manual(values = couleurs, name = "") +
   theme_ipsum(grid = "Y", base_size = 15, axis_title_size = 12) +
   theme(legend.position = "bottom") +
   scale_y_continuous(limits = c(0, NA)) +
